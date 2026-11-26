@@ -5,21 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080817">
-  <title>NEONVERSE | Enter The Future</title>
   <meta name="description" content="NEONVERSE - עולם של משחקים, חלל ואתגרים">
+  <title>NEONVERSE | Beyond Reality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-
 <canvas id="particles"></canvas>
 
 <header class="navbar">
-  <a class="brand" href="#home"><span>✦</span> NEONVERSE</a>
+  <a class="brand" href="#home">✦ NEONVERSE</a>
   <nav>
     <a href="#home">ראשי</a>
-    <a href="#arcade">ארקייד</a>
+    <a href="#arcade">משחקים</a>
     <a href="#world">עולם פתוח</a>
+    <a href="#facts">עובדות</a>
     <a href="#profile">פרופיל</a>
   </nav>
   <div class="nav-status"><span class="online-dot"></span> SYSTEM ONLINE</div>
@@ -31,9 +34,9 @@
     <div class="hero-content">
       <div class="eyebrow"><span class="pulse"></span> THE NEXT GENERATION EXPERIENCE</div>
       <h1>ENTER THE<br><span class="neon-text">NEONVERSE</span></h1>
-      <p>לא עוד אתר רגיל. זה העולם שלך. משחקים, עולמות, משימות ואתגרים במקום אחד.</p>
+      <p>היקום הדיגיטלי שלך מתחיל כאן. משחקים, עולמות, משימות ואתגרים במקום אחד.</p>
       <div class="hero-buttons">
-        <a href="#arcade" class="primary-btn">גלה משחקים <span>↗</span></a>
+        <a href="#arcade" class="primary-btn">גלה משחקים ↗</a>
         <a href="#world" class="secondary-btn">חקור את העולם</a>
       </div>
       <div class="hero-stats">
@@ -47,6 +50,7 @@
       <div class="orbit orbit-two"></div>
       <div class="planet">✦</div>
       <div class="floating-card">✧ DISCOVER<br><b>YOUR UNIVERSE</b></div>
+      <div class="mini-planet">◉</div>
     </div>
     <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
   </section>
@@ -56,7 +60,6 @@
       <div><span class="section-tag">01 / ENTERTAINMENT</span><h2>מרכז המשחקים<span class="neon-text">.</span></h2></div>
       <p>בחר את האתגר הבא שלך.</p>
     </div>
-
     <div class="game-grid">
       <article class="game-card featured">
         <div class="game-art space-art"><span>🚀</span><div class="art-label">SPACE MISSION</div></div>
@@ -64,10 +67,9 @@
           <div class="game-category">ARCADE · ACTION</div>
           <h3>SPACE CLICKER</h3>
           <p>תפוס את החללית, צבור נקודות ושבור שיאים.</p>
-          <button class="primary-btn launch-game" data-game="space">שחק עכשיו ↗</button>
+          <a href="#space-game" class="primary-btn">שחק עכשיו ↗</a>
         </div>
       </article>
-
       <article class="game-card">
         <div class="game-art block-art"><span>🧱</span><div class="art-label">OPEN WORLD</div></div>
         <div class="game-info">
@@ -77,7 +79,6 @@
           <a href="#world" class="primary-btn">כניסה לעולם ↗</a>
         </div>
       </article>
-
       <article class="game-card">
         <div class="game-art cyber-art"><span>⚡</span><div class="art-label">COMING SOON</div></div>
         <div class="game-info">
@@ -97,13 +98,14 @@
     </div>
     <div class="arcade-box">
       <div class="arcade-top">
-        <div> SCORE <strong id="score">0</strong></div>
-        <div> BEST <strong id="best">0</strong></div>
-        <div> TIME <strong id="time">30</strong></div>
+        <div>SCORE <strong id="score">0</strong></div>
+        <div>BEST <strong id="best">0</strong></div>
+        <div>TIME <strong id="time">30</strong></div>
+        <div>COMBO <strong id="combo">0</strong></div>
       </div>
       <canvas id="gameCanvas" width="900" height="420"></canvas>
       <div class="arcade-bottom">
-        <span id="gameMessage">מוכן למשימה?</span>
+        <span id="gameMessage">מוכן למשימה? לחץ על התחל משחק!</span>
         <button class="primary-btn" id="startGame">התחל משחק 🚀</button>
       </div>
     </div>
@@ -129,13 +131,13 @@
           <button class="tool" data-block="wood">🪵</button>
         </div>
         <div class="tool-group">
-          <button class="secondary-btn" id="mine">⛏️ חפירה</button>
+          <button class="secondary-btn active" id="mine">⛏️ חפירה</button>
           <button class="secondary-btn" id="build">🧱 בנייה</button>
         </div>
         <div class="tool-group">
-          <button class="secondary-btn" id="left">←</button>
-          <button class="secondary-btn" id="jump">קפיצה ↑</button>
-          <button class="secondary-btn" id="right">→</button>
+          <button class="secondary-btn" id="left">⬅️</button>
+          <button class="secondary-btn" id="jump">קפיצה ⬆️</button>
+          <button class="secondary-btn" id="right">➡️</button>
         </div>
       </div>
       <div class="world-controls">
@@ -143,7 +145,7 @@
         <button class="secondary-btn" id="loadWorld">📂 טען עולם</button>
         <button class="secondary-btn" id="newWorld">🔄 עולם חדש</button>
       </div>
-      <p class="hint">מחשב: A/D או חצים לתנועה, רווח לקפיצה, קליק לחפירה או בנייה. בטלפון: השתמש בכפתורי התנועה ובמגע על העולם.</p>
+      <p class="hint">מחשב: A/D או חצים לתנועה, רווח לקפיצה, קליק לחפירה או בנייה. בטלפון: כפתורי התנועה ומגע על העולם.</p>
       <p id="worldMessage" class="world-message">ברוך הבא לעולם שלך!</p>
     </div>
   </section>
@@ -165,28 +167,32 @@
       <button class="secondary-btn" id="changeName">שנה שם ✏️</button>
     </div>
     <div class="achievement-grid">
-      <div class="achievement"><span>🏆</span><b>התחלה חדשה</b><small>ברוך הבא ליקום</small></div>
-      <div class="achievement"><span>🚀</span><b>טייס חלל</b><small>צבור 20 נקודות</small></div>
-      <div class="achievement"><span>⛏️</span><b>כורה מתחיל</b><small>חפור 10 בלוקים</small></div>
+      <div class="achievement" id="achievementWelcome"><span>🏆</span><b>התחלה חדשה</b><small>ברוך הבא ליקום</small></div>
+      <div class="achievement" id="achievementPilot"><span>🚀</span><b>טייס חלל</b><small>צבור 20 נקודות</small></div>
+      <div class="achievement" id="achievementMiner"><span>⛏️</span><b>כורה מתחיל</b><small>חפור 10 בלוקים</small></div>
+      <div class="achievement" id="achievementBuilder"><span>🧱</span><b>בנאי מתחיל</b><small>בנה 10 בלוקים</small></div>
     </div>
   </section>
 
-<section class="facts-section" id="facts">
-  <div class="facts-header">
-    <span class="section-tag">05 / KNOWLEDGE UNIVERSE</span>
-    <h2>היקום מלא <span class="neon-text">בסודות.</span></h2>
-    <p>עובדות מדהימות מהחלל, המדע, הטכנולוגיה והטבע.</p>
-  </div>
-
-  <div class="facts-container">
-    <div class="fact-icon" id="factIcon">🌌</div>
-    <div class="fact-category" id="factCategory">SPACE DISCOVERY</div>
-    <h3 id="factTitle">הידעת?</h3>
-    <p id="factText">לחץ על הכפתור ותגלה עובדה מדהימה!</p>
-    <div class="fact-counter" id="factCounter">FACT 01 / 30</div>
-    <button class="primary-btn" id="nextFact">גלה עובדה חדשה ✨</button>
-  </div>
-</section>
+  <section class="facts-section" id="facts">
+    <div class="facts-header">
+      <span class="section-tag">05 / KNOWLEDGE UNIVERSE</span>
+      <h2>היקום מלא <span class="neon-text">בסודות.</span></h2>
+      <p>עובדות מדהימות מהחלל, המדע, הטכנולוגיה והטבע.</p>
+    </div>
+    <div class="facts-container">
+      <div class="fact-icon" id="factIcon">🌌</div>
+      <div class="fact-category" id="factCategory">SPACE DISCOVERY</div>
+      <h3 id="factTitle">הידעת?</h3>
+      <p id="factText">לחץ על הכפתור ותגלה עובדה מדהימה!</p>
+      <div class="fact-counter" id="factCounter">FACT 01 / 60</div>
+      <div class="fact-actions">
+        <button class="secondary-btn" id="prevFact">→ הקודם</button>
+        <button class="primary-btn" id="nextFact">גלה עובדה חדשה ✨</button>
+        <button class="secondary-btn" id="randomFact">🎲 אקראית</button>
+      </div>
+    </div>
+  </section>
 
   <section class="final-cta">
     <span class="section-tag">YOUR JOURNEY STARTS HERE</span>
@@ -199,6 +205,6 @@
   <a class="brand" href="#home">✦ NEONVERSE</a>
   <p>BUILT FOR EXPLORERS · © 2026</p>
 </footer>
-
+<button id="backTop" aria-label="חזרה למעלה">↑</button>
 </body>
 </html>
