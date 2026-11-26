@@ -2,611 +2,135 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEONVERSE - Beyond Reality</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap');
-
-:root{
- --a:#a855f7;
- --b:#2563eb;
- --glow:#a855f7;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
- font-family:Heebo,sans-serif;
- background:#070711;color:white;
- overflow-x:hidden;
-}
-#stars{position:fixed;inset:0;z-index:-3}
-#cursorGlow{
- position:fixed;width:350px;height:350px;
- background:radial-gradient(circle,#9333ea25,transparent 70%);
- pointer-events:none;transform:translate(-50%,-50%);
- z-index:-1;
-}
-nav{
- position:sticky;top:0;z-index:10;
- display:flex;justify-content:space-between;
- align-items:center;padding:20px 7%;
- background:#080817cc;backdrop-filter:blur(20px);
- border-bottom:1px solid #ffffff15;
-}
-.logo{font-size:25px;font-weight:900;color:#c4b5fd}
-nav a{color:#bbb;text-decoration:none;margin:0 10px}
-nav a:hover{color:white}
-.hero{
- min-height:85vh;display:flex;
- flex-direction:column;justify-content:center;
- align-items:center;text-align:center;padding:40px 20px;
-}
-.tag{
- border:1px solid var(--a);border-radius:40px;
- padding:8px 20px;color:#d8b4fe;margin-bottom:25px;
- box-shadow:0 0 25px #9333ea33;
-}
-h1{font-size:clamp(48px,9vw,95px);line-height:1.2}
-.gradient{
- background:linear-gradient(90deg,#818cf8,#e879f9,#38bdf8);
- background-clip:text;color:transparent;
-}
-.subtitle{color:#aaa;max-width:620px;line-height:1.9;margin:25px auto}
-.btn{
- border:0;cursor:pointer;color:white;
- padding:14px 28px;border-radius:12px;
- font-size:16px;font-weight:bold;
- background:linear-gradient(100deg,var(--a),var(--b));
- box-shadow:0 0 25px #9333ea55;
- transition:.3s;font-family:inherit;
-}
-.btn:hover{transform:translateY(-5px);box-shadow:0 0 40px #9333eaaa}
-section.content{padding:75px 8%;text-align:center}
-.section-title{font-size:40px;margin-bottom:35px}
-.cards{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:22px;max-width:1100px;margin:auto;
-}
-.card{
- text-align:right;padding:30px;
- border:1px solid #ffffff19;border-radius:20px;
- background:linear-gradient(145deg,#ffffff0c,#ffffff04);
- backdrop-filter:blur(12px);transition:.3s;
-}
-.card:hover{transform:translateY(-10px);border-color:var(--a);box-shadow:0 10px 40px #9333ea25}
-.card .icon{font-size:40px;margin-bottom:15px}
-.card p{color:#999;line-height:1.8;margin-top:10px}
-.panel{
- max-width:700px;margin:auto;padding:35px;
- background:#ffffff09;border:1px solid #ffffff20;
- border-radius:25px;
-}
-#fact{font-size:22px;line-height:1.8;min-height:90px;margin:20px 0}
-#clock{color:#c4b5fd;font-size:20px;margin-top:25px}
-#countdown{font-size:35px;color:#c4b5fd;margin:20px}
-.game-area{
- max-width:600px;margin:auto;background:#09091a;
- border:1px solid #ffffff25;border-radius:20px;
- padding:20px;
-}
-#game{
- width:100%;height:300px;background:#050510;
- border:1px solid #ffffff20;border-radius:12px;
- display:block;touch-action:manipulation;
-}
-.score{font-size:23px;margin:15px}
-footer{padding:35px;text-align:center;color:#777;border-top:1px solid #ffffff15}
-#top{
- position:fixed;bottom:20px;left:20px;z-index:20;
- border-radius:50%;width:48px;height:48px;
- background:#9333ea;color:white;border:0;
- cursor:pointer;font-size:22px;
-}
-@media(max-width:650px){
- nav{padding:15px;flex-wrap:wrap;gap:12px}
- nav a{font-size:12px;margin:0 5px}
- .section-title{font-size:30px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070711">
+  <title>NEONVERSE 4.0</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
+  <canvas id="stars"></canvas>
+  <div id="cursorGlow"></div>
 
-<canvas id="stars"></canvas>
-<div id="cursorGlow"></div>
-
-<nav>
- <div class="logo">✦ NEONVERSE</div>
- <div>
-  <a href="#home">בית</a>
-  <a href="#features">יכולות</a>
-  <a href="#game-section">משחק</a>
-  <a href="#facts">עובדות</a>
- </div>
-</nav>
-
-<header class="hero" id="home">
- <div class="tag">✧ THE FUTURE IS YOURS ✧</div>
- <h1>ברוכים הבאים<br><span class="gradient">לעתיד.</span></h1>
- <p class="subtitle">עולם דיגיטלי שבו אין גבולות לדמיון. משחקים, טכנולוגיה, אנימציות והפתעות מחכים לך.</p>
- <a href="#features"><button class="btn">בואו נתחיל 🚀</button></a>
- <div id="clock"></div>
-</header>
-
-<section class="content" id="features">
- <h2 class="section-title">הכוח נמצא אצלך ⚡</h2>
- <div class="cards">
-  <div class="card"><div class="icon">🚀</div><h2>מהירות</h2><p>חוויית גלישה מהירה ועיצוב עתידני.</p></div>
-  <div class="card"><div class="icon">🌌</div><h2>גלקסיה</h2><p>היכנס לעולם מלא כוכבים ואפקטים.</p></div>
-  <div class="card"><div class="icon">🎮</div><h2>משחקים</h2><p>אתגרים קטנים שמחכים שתנצח בהם.</p></div>
-  <div class="card"><div class="icon">💎</div><h2>התאמה אישית</h2><p>בחר את הצבעים שמתאימים לך.</p></div>
- </div>
-</section>
-
-<section class="content">
- <h2 class="section-title">בחר את היקום שלך 🎨</h2>
- <p class="subtitle">לחץ על צבע ושנה את האווירה של האתר!</p>
- <div style="display:flex;justify-content:center;gap:15px;flex-wrap:wrap">
-  <button class="btn" onclick="setTheme('#a855f7','#2563eb')">💜 סגול</button>
-  <button class="btn" onclick="setTheme('#06b6d4','#2563eb')">💙 כחול</button>
-  <button class="btn" onclick="setTheme('#ec4899','#9333ea')">💗 ורוד</button>
-  <button class="btn" onclick="setTheme('#10b981','#047857')">💚 ירוק</button>
- </div>
-</section>
-
-<section class="content" id="facts">
- <h2 class="section-title">🧠 פינת הידע</h2>
- <div class="panel">
-  <div style="font-size:45px">🌠</div>
-  <div id="fact">לחץ על הכפתור וגלה משהו שלא ידעת!</div>
-  <button class="btn" onclick="newFact()">גלה עובדה חדשה ✨</button>
- </div>
-</section>
-
-<section class="content">
- <h2 class="section-title">⏳ ספירה לאחור</h2>
- <div class="panel">
-  <p>כמה שניות עברו מאז שנכנסת לעולם שלנו?</p>
-  <div id="countdown">0</div>
-  <p style="color:#aaa">הזמן שלך בעולם NEONVERSE</p>
- </div>
-</section>
-
-<section class="content" id="game-section">
- <h2 class="section-title">🎮 משחק החללית</h2>
- <p class="subtitle">לחץ על החללית כדי לצבור נקודות. כמה תצליח להשיג?</p>
- <div class="game-area">
-  <div class="score">ניקוד: <span id="score">0</span></div>
-  <canvas id="game" width="600" height="300"></canvas>
-  <br><br>
-  <button class="btn" onclick="startGame()">התחל משחק 🚀</button>
-  <p style="color:#aaa;margin-top:15px">לחץ על החללית כשהיא מופיעה כדי לקבל נקודה!</p>
- </div>
-</section>
-
-<section class="content">
- <h2 class="section-title">מוכן להרפתקה הבאה?</h2>
- <p class="subtitle">זה רק תחילת המסע שלך.</p>
- <button class="btn" onclick="surprise()">🎁 הפתעה סודית</button>
-</section>
-
-<footer>
- ✦ NEONVERSE © 2026 | נוצר עם ❤️
-</footer>
-
-<button id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<script>
-// שעון
-function updateClock(){
- document.getElementById('clock').textContent=
- 'השעה עכשיו: '+new Date().toLocaleTimeString('he-IL');
-}
-setInterval(updateClock,1000);updateClock();
-
-// כוכבים
-const starsCanvas=document.getElementById('stars');
-const ctx=starsCanvas.getContext('2d');
-let stars=[];
-function resize(){
- starsCanvas.width=innerWidth;
- starsCanvas.height=innerHeight;
- stars=Array.from({length:130},()=>({
- x:Math.random()*innerWidth,
- y:Math.random()*innerHeight,
- r:Math.random()*2,
- speed:Math.random()*.5+.1
- }));
-}
-function animate(){
- ctx.clearRect(0,0,starsCanvas.width,starsCanvas.height);
- stars.forEach(s=>{
-  ctx.fillStyle='#bbaaff';
-  ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
-  s.y-=s.speed;if(s.y<0){s.y=innerHeight;s.x=Math.random()*innerWidth}
- });
- requestAnimationFrame(animate);
-}
-window.addEventListener('resize',resize);resize();animate();
-
-// אור עכבר
-document.addEventListener('mousemove',e=>{
- const glow=document.getElementById('cursorGlow');
- glow.style.left=e.clientX+'px';
- glow.style.top=e.clientY+'px';
-});
-
-// ערכות צבע
-function setTheme(a,b){
- document.documentElement.style.setProperty('--a',a);
- document.documentElement.style.setProperty('--b',b);
-}
-
-// עובדות
-const facts=[
- '🐙 לתמנון יש שלושה לבבות!',
- '🌌 יש יותר כוכבים ביקום הנצפה מאשר גרגרי חול בחופים של כדור הארץ, לפי הערכות מסוימות.',
- '🦈 כרישים קיימים עוד לפני העצים!',
- '🪐 יום אחד על נוגה ארוך יותר משנה אחת על נוגה.',
- '🐝 לדבורים יש יכולת לזהות דפוסים וצבעים.',
- '🌙 הירח מתרחק מכדור הארץ בכ-3.8 סנטימטרים בשנה.',
- '🦒 לג׳ירפה יש אותו מספר חוליות צוואר כמו לבני אדם!'
-];
-function newFact(){
- document.getElementById('fact').textContent=
- facts[Math.floor(Math.random()*facts.length)];
-}
-
-// זמן באתר
-let seconds=0;
-setInterval(()=>{
- seconds++;
- document.getElementById('countdown').textContent=seconds;
-},1000);
-
-// הפתעה
-function surprise(){
- alert('🌌 ברוך הבא ליקום הסודי! אתה הכוכב של NEONVERSE 🚀');
-}
-
-// משחק לחיצה
-const game=document.getElementById('game');
-const g=game.getContext('2d');
-let score=0,x=300,y=150,running=false;
-function drawGame(){
- g.clearRect(0,0,600,300);
- g.fillStyle='#11112a';g.fillRect(0,0,600,300);
- g.font='38px Arial';g.textAlign='center';
- g.fillText('🚀',x,y+13);
-}
-function startGame(){
- score=0;running=true;
- document.getElementById('score').textContent=score;
- moveRocket();
- drawGame();
-}
-function moveRocket(){
- if(!running)return;
- x=40+Math.random()*520;
- y=40+Math.random()*220;
- drawGame();
-}
-game.addEventListener('click',e=>{
- if(!running)return;
- const rect=game.getBoundingClientRect();
- const mx=(e.clientX-rect.left)*600/rect.width;
- const my=(e.clientY-rect.top)*300/rect.height;
- if(Math.hypot(mx-x,my-y)<55){
-  score++;
-  document.getElementById('score').textContent=score;
-  moveRocket();
- }
-});
-game.addEventListener('touchstart',e=>{
- if(!running)return;
- const t=e.touches[0];
- const rect=game.getBoundingClientRect();
- const mx=(t.clientX-rect.left)*600/rect.width;
- const my=(t.clientY-rect.top)*300/rect.height;
- if(Math.hypot(mx-x,my-y)<55){
-  score++;
-  document.getElementById('score').textContent=score;
-  moveRocket();
- }
-},{passive:true});
-drawGame();
-</script>
-
-<section class="content" id="block-world">
-  <h2 class="section-title">🌍 BLOCK WORLD</h2>
-  <p class="subtitle">בנה עולם משלך, חפור באדמה וחקור את עולם הקוביות!</p>
-
-  <div class="game-area">
-    <div style="display:flex;justify-content:space-around;margin-bottom:12px">
-      <span>🧱 בלוקים: <b id="blockCount">0</b></span>
-      <span>❤️ חיים: <b>100</b></span>
+  <nav>
+    <div class="logo">✦ NEONVERSE</div>
+    <div class="links">
+      <a href="#home">בית</a>
+      <a href="#features">יכולות</a>
+      <a href="#games">משחקים</a>
+      <a href="#block-world">BLOCK WORLD</a>
+      <a href="#facts">עובדות</a>
     </div>
+  </nav>
 
-    <canvas id="blockCanvas" width="800" height="480"
-      style="width:100%;display:block;border-radius:12px;touch-action:none;image-rendering:pixelated">
-    </canvas>
+  <header class="hero" id="home">
+    <div class="tag">✧ THE FUTURE IS YOURS ✧</div>
+    <h1>ברוכים הבאים<br><span class="gradient">לעתיד.</span></h1>
+    <p class="subtitle">עולם דיגיטלי מלא במשחקים, גלקסיות, אתגרים והפתעות.</p>
+    <a class="btn" href="#features">בואו נתחיל 🚀</a>
+    <div id="clock"></div>
+  </header>
 
-    <div id="blockHotbar" style="display:flex;justify-content:center;gap:8px;margin:15px 0;flex-wrap:wrap">
-      <button class="btn blockChoice" data-type="grass">🌱</button>
-      <button class="btn blockChoice" data-type="dirt">🟫</button>
-      <button class="btn blockChoice" data-type="stone">🪨</button>
-      <button class="btn blockChoice" data-type="wood">🪵</button>
+  <section class="content" id="features">
+    <h2>הכוח נמצא אצלך ⚡</h2>
+    <div class="cards">
+      <article class="card"><div>🚀</div><h3>מהירות</h3><p>חוויה דיגיטלית חלקה.</p></article>
+      <article class="card"><div>🌌</div><h3>גלקסיה</h3><p>עולם מלא כוכבים ואפקטים.</p></article>
+      <article class="card"><div>🎮</div><h3>משחקים</h3><p>משחקים ואתגרים אינטראקטיביים.</p></article>
+      <article class="card"><div>💎</div><h3>התאמה אישית</h3><p>בחר את הצבעים שלך.</p></article>
     </div>
+  </section>
 
-    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
-      <button class="btn" id="blockLeft">⬅️</button>
-      <button class="btn" id="blockJump">⬆️ קפיצה</button>
-      <button class="btn" id="blockRight">➡️</button>
-      <button class="btn" id="blockReset">🔄 עולם חדש</button>
+  <section class="content">
+    <h2>בחר את היקום שלך 🎨</h2>
+    <div class="controls">
+      <button class="btn" data-theme="purple">💜 סגול</button>
+      <button class="btn" data-theme="blue">💙 כחול</button>
+      <button class="btn" data-theme="pink">💗 ורוד</button>
+      <button class="btn" data-theme="green">💚 ירוק</button>
     </div>
+  </section>
 
-    <p style="color:#aaa;margin-top:15px">
-      מחשב: A/D או חצים לזוז, רווח לקפוץ, קליק שמאלי לחפור וקליק ימני לבנות.
-      בטלפון: השתמש בכפתורים ובמגע על הבלוקים.
-    </p>
-    <p id="blockMessage" style="color:#c4b5fd;margin-top:10px">ברוך הבא לעולם הקוביות!</p>
-  </div>
-</section>
+  <section class="content" id="facts">
+    <h2>🧠 פינת הידע</h2>
+    <div class="panel">
+      <p id="fact">לחץ כדי לגלות עובדה חדשה!</p>
+      <button class="btn" id="newFact">גלה עובדה ✨</button>
+    </div>
+  </section>
 
-<script>
-(()=>{
-const canvas=document.getElementById('blockCanvas');
-const ctx=canvas.getContext('2d');
-const SIZE=40, W=50, H=12;
-let world=[],camera=0,selected='grass';
-let player={x:100,y:100,vx:0,vy:0,w:25,h:35,ground:false};
-let keys={},blocks=0,raf;
-const colors={
- grass:'#55b84a',
- dirt:'#986039',
- stone:'#888b99',
- wood:'#a66b36',
- leaf:'#248a43',
- air:null
-};
-const message=document.getElementById('blockMessage');
+  <section class="content">
+    <h2>⏳ הזמן שלך באתר</h2>
+    <div class="panel">
+      <div id="countdown">0</div>
+      <p>שניות מאז הכניסה</p>
+    </div>
+  </section>
 
-function generate(){
- world=Array.from({length:H},()=>Array(W).fill('air'));
- for(let x=0;x<W;x++){
-  let ground=6+Math.floor(Math.sin(x*.4)*1.2+Math.random()*1.5);
-  for(let y=ground;y<H;y++){
-   world[y][x]=y===ground?'grass':y<ground+3?'dirt':'stone';
-  }
-  if(x%8===3 && Math.random()>.2){
-   world[ground-1][x]='wood';
-   world[ground-2][x]='wood';
-   for(let dx=-1;dx<=1;dx++){
-    for(let dy=-4;dy<=-2;dy++){
-     let tx=x+dx,ty=ground+dy;
-     if(tx>=0 && tx<W)world[ty][tx]='leaf';
-    }
-   }
-  }
- }
- player.x=100;player.y=100;player.vx=0;player.vy=0;
- camera=0;blocks=0;
- updateCount();
-}
+  <section class="content" id="games">
+    <h2>🎮 משחק החללית</h2>
+    <div class="game-area">
+      <div class="stats">
+        <div>ניקוד: <strong id="score">0</strong></div>
+        <div>שיא: <strong id="bestScore">0</strong></div>
+        <div>זמן: <strong id="gameTime">30</strong></div>
+      </div>
+      <canvas id="game" width="600" height="300"></canvas>
+      <button class="btn" id="startGame">התחל משחק 🚀</button>
+      <p id="gameMessage">לחץ על התחל כדי לשחק!</p>
+    </div>
+  </section>
 
-function updateCount(){
- document.getElementById('blockCount').textContent=blocks;
-}
+  <section class="content" id="block-world">
+    <h2>🌍 BLOCK WORLD</h2>
+    <p class="subtitle">בנה, חפור וחקור עולם משלך!</p>
+    <div class="game-area">
+      <div class="stats">
+        <div>בלוקים: <strong id="blockCount">0</strong></div>
+        <div>מיקום: <strong id="playerPos">0</strong></div>
+        <div>נבחר: <strong id="selectedBlock">🌱</strong></div>
+      </div>
+      <canvas id="blockCanvas" width="800" height="480"></canvas>
 
-function solid(x,y){
- if(x<0||x>=W||y>=H)return true;
- if(y<0)return false;
- return world[y][x]!=='air';
-}
+      <div class="controls">
+        <button class="btn blockChoice selected" data-type="grass">🌱</button>
+        <button class="btn blockChoice" data-type="dirt">🟫</button>
+        <button class="btn blockChoice" data-type="stone">🪨</button>
+        <button class="btn blockChoice" data-type="wood">🪵</button>
+      </div>
 
-function collides(x,y){
- let l=Math.floor(x/SIZE),r=Math.floor((x+player.w-1)/SIZE);
- let t=Math.floor(y/SIZE),b=Math.floor((y+player.h-1)/SIZE);
- for(let ty=t;ty<=b;ty++)
-  for(let tx=l;tx<=r;tx++)
-   if(solid(tx,ty))return true;
- return false;
-}
+      <div class="controls">
+        <button class="btn" id="mineMode">⛏️ חפירה</button>
+        <button class="btn" id="buildMode">🧱 בנייה</button>
+      </div>
 
-function update(){
- player.vx=0;
- if(keys.left)player.vx=-3.5;
- if(keys.right)player.vx=3.5;
+      <div class="controls">
+        <button class="btn" id="blockLeft">⬅️</button>
+        <button class="btn" id="blockJump">⬆️ קפיצה</button>
+        <button class="btn" id="blockRight">➡️</button>
+      </div>
 
- player.x+=player.vx;
- if(collides(player.x,player.y))player.x-=player.vx;
+      <div class="controls">
+        <button class="btn" id="blockReset">🔄 עולם חדש</button>
+        <button class="btn" id="saveWorld">💾 שמור</button>
+        <button class="btn" id="loadWorld">📂 טען</button>
+      </div>
+      <p id="blockMessage">ברוך הבא לעולם הקוביות!</p>
+    </div>
+  </section>
 
- player.vy=Math.min(player.vy+.45,10);
- player.y+=player.vy;
- player.ground=false;
+  <section class="content">
+    <h2>🏆 הפרופיל שלך</h2>
+    <div class="panel">
+      <h3 id="playerName">חוקר החלל</h3>
+      <p>שיא: <strong id="profileBest">0</strong></p>
+      <p>זמן באתר: <strong id="profileTime">0</strong></p>
+      <button class="btn" id="changeName">שנה שם ✏️</button>
+    </div>
+  </section>
 
- if(collides(player.x,player.y)){
-  if(player.vy>0)player.ground=true;
-  player.y-=player.vy;
-  player.vy=0;
- }
- if(player.y>600){player.y=100;player.x=100;player.vy=0;}
-
- camera=Math.max(0,Math.min(W*SIZE-canvas.width,player.x-350));
-}
-
-function drawBlock(type,x,y){
- let colors2=colors;
- ctx.fillStyle=colors2[type]||'#000';
- ctx.fillRect(x,y,SIZE,SIZE);
- if(type==='grass'){
-  ctx.fillStyle='#7cdb55';ctx.fillRect(x,y,SIZE,9);
- }
- if(type==='wood'){
-  ctx.fillStyle='#704020';ctx.fillRect(x+12,y,5,SIZE);
-  ctx.fillRect(x+28,y,4,SIZE);
- }
- if(type==='stone'){
-  ctx.fillStyle='#aeb0b9';
-  ctx.fillRect(x+8,y+8,5,5);
-  ctx.fillRect(x+26,y+25,7,5);
- }
- if(type==='leaf'){
-  ctx.fillStyle='#48b95b';
-  ctx.fillRect(x+7,y+7,9,9);
- }
- ctx.strokeStyle='#00000022';
- ctx.strokeRect(x,y,SIZE,SIZE);
-}
-
-function draw(){
- ctx.fillStyle='#72b8e8';
- ctx.fillRect(0,0,800,480);
-
- // שמש
- ctx.fillStyle='#ffe58a';
- ctx.beginPath();ctx.arc(680,75,35,0,Math.PI*2);ctx.fill();
-
- // עננים
- ctx.fillStyle='#ffffffaa';
- for(let i=0;i<4;i++){
-  let x=(i*240-camera*.25+800)%900;
-  ctx.fillRect(x,100,75,20);
-  ctx.fillRect(x+20,85,35,20);
- }
-
- // עולם
- let start=Math.floor(camera/SIZE);
- for(let y=0;y<H;y++){
-  for(let x=start;x<Math.min(W,start+22);x++){
-   let type=world[y][x];
-   if(type!=='air')
-    drawBlock(type,x*SIZE-camera,y*SIZE);
-  }
- }
-
- // שחקן
- let px=player.x-camera;
- ctx.fillStyle='#edbd8a';
- ctx.fillRect(px+5,player.y,18,13);
- ctx.fillStyle='#3067c7';
- ctx.fillRect(px+3,player.y+13,22,14);
- ctx.fillStyle='#333';
- ctx.fillRect(px+4,player.y+27,8,9);
- ctx.fillRect(px+17,player.y+27,8,9);
- ctx.fillStyle='#222';
- ctx.fillRect(px+17,player.y+5,3,3);
-
- // הוראות
- ctx.fillStyle='#111';
- ctx.font='16px Arial';
- ctx.fillText('BLOCK WORLD',15,25);
-}
-
-function loop(){
- update();draw();
- raf=requestAnimationFrame(loop);
-}
-
-function jump(){
- if(player.ground){
-  player.vy=-10;
-  player.ground=false;
- }
-}
-
-function action(e){
- let rect=canvas.getBoundingClientRect();
- let mx=(e.clientX-rect.left)*canvas.width/rect.width+camera;
- let my=(e.clientY-rect.top)*canvas.height/rect.height;
- let tx=Math.floor(mx/SIZE),ty=Math.floor(my/SIZE);
-
- if(tx<0||tx>=W||ty<0||ty>=H)return;
-
- if(e.button===2){
-  if(world[ty][tx]==='air'){
-   let overlaps=tx*SIZE<player.x+player.w &&
-    (tx+1)*SIZE>player.x &&
-    ty*SIZE<player.y+player.h &&
-    (ty+1)*SIZE>player.y;
-   if(!overlaps){
-    world[ty][tx]=selected;
-    blocks++;
-    updateCount();
-   }
-  }
- }else{
-  if(world[ty][tx]!=='air'){
-   world[ty][tx]='air';
-   blocks=Math.max(0,blocks-1);
-   updateCount();
-  }
- }
-}
-
-canvas.addEventListener('pointerdown',e=>{
- e.preventDefault();
- if(e.pointerType==='mouse')action(e);
- else {
-  let rect=canvas.getBoundingClientRect();
-  let tx=Math.floor(((e.clientX-rect.left)*canvas.width/rect.width+camera)/SIZE);
-  let ty=Math.floor((e.clientY-rect.top)*canvas.height/rect.height/SIZE);
-  if(tx>=0&&tx<W&&ty>=0&&ty<H){
-   if(world[ty][tx]!=='air'){
-    world[ty][tx]='air';
-    blocks=Math.max(0,blocks-1);
-   }else if(ty>0 && world[ty+1]?.[tx]!=='air'){
-    world[ty][tx]=selected;
-    blocks++;
-   }
-   updateCount();
-  }
- }
-});
-canvas.addEventListener('contextmenu',e=>e.preventDefault());
-
-document.querySelectorAll('.blockChoice').forEach(btn=>{
- btn.addEventListener('click',()=>{
-  selected=btn.dataset.type;
-  message.textContent='נבחר בלוק: '+btn.textContent;
-  document.querySelectorAll('.blockChoice').forEach(b=>{
-   b.style.outline=b===btn?'3px solid white':'none';
-  });
- });
-});
-document.getElementById('blockJump').onclick=jump;
-document.getElementById('blockReset').onclick=()=>{
- generate();
- message.textContent='🌍 יצרת עולם חדש!';
-};
-
-function hold(id,key){
- let el=document.getElementById(id);
- el.addEventListener('pointerdown',e=>{
-  e.preventDefault();keys[key]=true;
- });
- ['pointerup','pointerleave','pointercancel'].forEach(ev=>{
-  el.addEventListener(ev,()=>keys[key]=false);
- });
-}
-hold('blockLeft','left');
-hold('blockRight','right');
-
-window.addEventListener('keydown',e=>{
- if(['ArrowLeft','ArrowRight',' ','a','d','A','D'].includes(e.key))e.preventDefault();
- if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=true;
- if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=true;
- if(e.key===' '||e.key==='ArrowUp')jump();
-});
-window.addEventListener('keyup',e=>{
- if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=false;
- if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=false;
-});
-
-generate();
-loop();
-})();
-</script>
-
+  <footer>✦ NEONVERSE © 2026 | נוצר עם ❤️</footer>
+  <button id="top" aria-label="למעלה">↑</button>
 </body>
 </html>
