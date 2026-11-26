@@ -4,133 +4,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#070711">
-  <title>NEONVERSE 4.0</title>
+  <meta name="theme-color" content="#080817">
+  <title>NEONVERSE | Enter The Future</title>
+  <meta name="description" content="NEONVERSE - עולם של משחקים, חלל ואתגרים">
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <canvas id="stars"></canvas>
-  <div id="cursorGlow"></div>
 
+<canvas id="particles"></canvas>
+
+<header class="navbar">
+  <a class="brand" href="#home"><span>✦</span> NEONVERSE</a>
   <nav>
-    <div class="logo">✦ NEONVERSE</div>
-    <div class="links">
-      <a href="#home">בית</a>
-      <a href="#features">יכולות</a>
-      <a href="#games">משחקים</a>
-      <a href="#block-world">BLOCK WORLD</a>
-      <a href="#facts">עובדות</a>
-    </div>
+    <a href="#home">ראשי</a>
+    <a href="#arcade">ארקייד</a>
+    <a href="#world">עולם פתוח</a>
+    <a href="#profile">פרופיל</a>
   </nav>
+  <div class="nav-status"><span class="online-dot"></span> SYSTEM ONLINE</div>
+</header>
 
-  <header class="hero" id="home">
-    <div class="tag">✧ THE FUTURE IS YOURS ✧</div>
-    <h1>ברוכים הבאים<br><span class="gradient">לעתיד.</span></h1>
-    <p class="subtitle">עולם דיגיטלי מלא במשחקים, גלקסיות, אתגרים והפתעות.</p>
-    <a class="btn" href="#features">בואו נתחיל 🚀</a>
-    <div id="clock"></div>
-  </header>
-
-  <section class="content" id="features">
-    <h2>הכוח נמצא אצלך ⚡</h2>
-    <div class="cards">
-      <article class="card"><div>🚀</div><h3>מהירות</h3><p>חוויה דיגיטלית חלקה.</p></article>
-      <article class="card"><div>🌌</div><h3>גלקסיה</h3><p>עולם מלא כוכבים ואפקטים.</p></article>
-      <article class="card"><div>🎮</div><h3>משחקים</h3><p>משחקים ואתגרים אינטראקטיביים.</p></article>
-      <article class="card"><div>💎</div><h3>התאמה אישית</h3><p>בחר את הצבעים שלך.</p></article>
-    </div>
-  </section>
-
-  <section class="content">
-    <h2>בחר את היקום שלך 🎨</h2>
-    <div class="controls">
-      <button class="btn" data-theme="purple">💜 סגול</button>
-      <button class="btn" data-theme="blue">💙 כחול</button>
-      <button class="btn" data-theme="pink">💗 ורוד</button>
-      <button class="btn" data-theme="green">💚 ירוק</button>
-    </div>
-  </section>
-
-  <section class="content" id="facts">
-    <h2>🧠 פינת הידע</h2>
-    <div class="panel">
-      <p id="fact">לחץ כדי לגלות עובדה חדשה!</p>
-      <button class="btn" id="newFact">גלה עובדה ✨</button>
-    </div>
-  </section>
-
-  <section class="content">
-    <h2>⏳ הזמן שלך באתר</h2>
-    <div class="panel">
-      <div id="countdown">0</div>
-      <p>שניות מאז הכניסה</p>
-    </div>
-  </section>
-
-  <section class="content" id="games">
-    <h2>🎮 משחק החללית</h2>
-    <div class="game-area">
-      <div class="stats">
-        <div>ניקוד: <strong id="score">0</strong></div>
-        <div>שיא: <strong id="bestScore">0</strong></div>
-        <div>זמן: <strong id="gameTime">30</strong></div>
+<main>
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="eyebrow"><span class="pulse"></span> THE NEXT GENERATION EXPERIENCE</div>
+      <h1>ENTER THE<br><span class="neon-text">NEONVERSE</span></h1>
+      <p>לא עוד אתר רגיל. זה העולם שלך. משחקים, עולמות, משימות ואתגרים במקום אחד.</p>
+      <div class="hero-buttons">
+        <a href="#arcade" class="primary-btn">גלה משחקים <span>↗</span></a>
+        <a href="#world" class="secondary-btn">חקור את העולם</a>
       </div>
-      <canvas id="game" width="600" height="300"></canvas>
-      <button class="btn" id="startGame">התחל משחק 🚀</button>
-      <p id="gameMessage">לחץ על התחל כדי לשחק!</p>
+      <div class="hero-stats">
+        <div><strong id="heroLevel">01</strong><small>רמה</small></div>
+        <div><strong id="heroXP">0</strong><small>נקודות XP</small></div>
+        <div><strong id="heroCoins">100</strong><small>מטבעות</small></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="planet">✦</div>
+      <div class="floating-card">✧ DISCOVER<br><b>YOUR UNIVERSE</b></div>
+    </div>
+    <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+  </section>
+
+  <section class="section" id="arcade">
+    <div class="section-heading">
+      <div><span class="section-tag">01 / ENTERTAINMENT</span><h2>מרכז המשחקים<span class="neon-text">.</span></h2></div>
+      <p>בחר את האתגר הבא שלך.</p>
+    </div>
+
+    <div class="game-grid">
+      <article class="game-card featured">
+        <div class="game-art space-art"><span>🚀</span><div class="art-label">SPACE MISSION</div></div>
+        <div class="game-info">
+          <div class="game-category">ARCADE · ACTION</div>
+          <h3>SPACE CLICKER</h3>
+          <p>תפוס את החללית, צבור נקודות ושבור שיאים.</p>
+          <button class="primary-btn launch-game" data-game="space">שחק עכשיו ↗</button>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <div class="game-art block-art"><span>🧱</span><div class="art-label">OPEN WORLD</div></div>
+        <div class="game-info">
+          <div class="game-category">SANDBOX · BUILD</div>
+          <h3>BLOCK WORLD</h3>
+          <p>בנה, חפור וחקור עולם קוביות משלך.</p>
+          <a href="#world" class="primary-btn">כניסה לעולם ↗</a>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <div class="game-art cyber-art"><span>⚡</span><div class="art-label">COMING SOON</div></div>
+        <div class="game-info">
+          <div class="game-category">CHALLENGE</div>
+          <h3>CYBER RUSH</h3>
+          <p>אתגר מהירות חדש בדרך אליך.</p>
+          <button class="secondary-btn" disabled>בקרוב</button>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="content" id="block-world">
-    <h2>🌍 BLOCK WORLD</h2>
-    <p class="subtitle">בנה, חפור וחקור עולם משלך!</p>
-    <div class="game-area">
-      <div class="stats">
-        <div>בלוקים: <strong id="blockCount">0</strong></div>
-        <div>מיקום: <strong id="playerPos">0</strong></div>
-        <div>נבחר: <strong id="selectedBlock">🌱</strong></div>
+  <section class="section arcade-section" id="space-game">
+    <div class="section-heading">
+      <div><span class="section-tag">02 / ARCADE MODE</span><h2>SPACE CLICKER<span class="neon-text">.</span></h2></div>
+      <p>יש לך 30 שניות. כמה נקודות תצליח להשיג?</p>
+    </div>
+    <div class="arcade-box">
+      <div class="arcade-top">
+        <div> SCORE <strong id="score">0</strong></div>
+        <div> BEST <strong id="best">0</strong></div>
+        <div> TIME <strong id="time">30</strong></div>
       </div>
-      <canvas id="blockCanvas" width="800" height="480"></canvas>
-
-      <div class="controls">
-        <button class="btn blockChoice selected" data-type="grass">🌱</button>
-        <button class="btn blockChoice" data-type="dirt">🟫</button>
-        <button class="btn blockChoice" data-type="stone">🪨</button>
-        <button class="btn blockChoice" data-type="wood">🪵</button>
+      <canvas id="gameCanvas" width="900" height="420"></canvas>
+      <div class="arcade-bottom">
+        <span id="gameMessage">מוכן למשימה?</span>
+        <button class="primary-btn" id="startGame">התחל משחק 🚀</button>
       </div>
-
-      <div class="controls">
-        <button class="btn" id="mineMode">⛏️ חפירה</button>
-        <button class="btn" id="buildMode">🧱 בנייה</button>
-      </div>
-
-      <div class="controls">
-        <button class="btn" id="blockLeft">⬅️</button>
-        <button class="btn" id="blockJump">⬆️ קפיצה</button>
-        <button class="btn" id="blockRight">➡️</button>
-      </div>
-
-      <div class="controls">
-        <button class="btn" id="blockReset">🔄 עולם חדש</button>
-        <button class="btn" id="saveWorld">💾 שמור</button>
-        <button class="btn" id="loadWorld">📂 טען</button>
-      </div>
-      <p id="blockMessage">ברוך הבא לעולם הקוביות!</p>
     </div>
   </section>
 
-  <section class="content">
-    <h2>🏆 הפרופיל שלך</h2>
-    <div class="panel">
-      <h3 id="playerName">חוקר החלל</h3>
-      <p>שיא: <strong id="profileBest">0</strong></p>
-      <p>זמן באתר: <strong id="profileTime">0</strong></p>
-      <button class="btn" id="changeName">שנה שם ✏️</button>
+  <section class="section world-section" id="world">
+    <div class="section-heading">
+      <div><span class="section-tag">03 / SANDBOX WORLD</span><h2>BLOCK WORLD<span class="neon-text">.</span></h2></div>
+      <p>העולם שלך. החוקים שלך.</p>
+    </div>
+    <div class="world-box">
+      <div class="world-toolbar">
+        <div class="world-stat">🧱 בלוקים: <strong id="blocks">0</strong></div>
+        <div class="world-stat">📍 מיקום: <strong id="position">0</strong></div>
+        <div class="world-stat">⛏️ מצב: <strong id="modeLabel">חפירה</strong></div>
+      </div>
+      <canvas id="worldCanvas" width="900" height="480"></canvas>
+      <div class="world-controls">
+        <div class="tool-group">
+          <button class="tool selected" data-block="grass">🌱</button>
+          <button class="tool" data-block="dirt">🟫</button>
+          <button class="tool" data-block="stone">🪨</button>
+          <button class="tool" data-block="wood">🪵</button>
+        </div>
+        <div class="tool-group">
+          <button class="secondary-btn" id="mine">⛏️ חפירה</button>
+          <button class="secondary-btn" id="build">🧱 בנייה</button>
+        </div>
+        <div class="tool-group">
+          <button class="secondary-btn" id="left">←</button>
+          <button class="secondary-btn" id="jump">קפיצה ↑</button>
+          <button class="secondary-btn" id="right">→</button>
+        </div>
+      </div>
+      <div class="world-controls">
+        <button class="secondary-btn" id="saveWorld">💾 שמור עולם</button>
+        <button class="secondary-btn" id="loadWorld">📂 טען עולם</button>
+        <button class="secondary-btn" id="newWorld">🔄 עולם חדש</button>
+      </div>
+      <p class="hint">מחשב: A/D או חצים לתנועה, רווח לקפיצה, קליק לחפירה או בנייה. בטלפון: השתמש בכפתורי התנועה ובמגע על העולם.</p>
+      <p id="worldMessage" class="world-message">ברוך הבא לעולם שלך!</p>
     </div>
   </section>
 
-  <footer>✦ NEONVERSE © 2026 | נוצר עם ❤️</footer>
-  <button id="top" aria-label="למעלה">↑</button>
+  <section class="section profile-section" id="profile">
+    <div class="section-heading">
+      <div><span class="section-tag">04 / YOUR IDENTITY</span><h2>השחקן שלך<span class="neon-text">.</span></h2></div>
+      <p>כל מסע מתחיל בפרופיל שלך.</p>
+    </div>
+    <div class="profile-card">
+      <div class="avatar">👨‍🚀</div>
+      <div class="profile-details">
+        <div class="game-category">NEONVERSE PLAYER</div>
+        <h3 id="playerName">SPACE EXPLORER</h3>
+        <p>רמה <strong id="level">1</strong> · <strong id="xp">0</strong> XP</p>
+        <div class="xp-track"><div id="xpBar"></div></div>
+        <small id="xpText">0 / 100 XP לרמה הבאה</small>
+      </div>
+      <button class="secondary-btn" id="changeName">שנה שם ✏️</button>
+    </div>
+    <div class="achievement-grid">
+      <div class="achievement"><span>🏆</span><b>התחלה חדשה</b><small>ברוך הבא ליקום</small></div>
+      <div class="achievement"><span>🚀</span><b>טייס חלל</b><small>צבור 20 נקודות</small></div>
+      <div class="achievement"><span>⛏️</span><b>כורה מתחיל</b><small>חפור 10 בלוקים</small></div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <span class="section-tag">YOUR JOURNEY STARTS HERE</span>
+    <h2>היקום מחכה <span class="neon-text">לך.</span></h2>
+    <a href="#arcade" class="primary-btn">בוא נשחק 🚀</a>
+  </section>
+</main>
+
+<footer>
+  <a class="brand" href="#home">✦ NEONVERSE</a>
+  <p>BUILT FOR EXPLORERS · © 2026</p>
+</footer>
+
 </body>
 </html>
