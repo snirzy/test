@@ -290,3 +290,432 @@ footer p{font-size:10px;color:#77768e;letter-spacing:2px}
     transition:none!important;
   }
 }
+
+/* =================================
+   NEONVERSE 5.5 - GALAXY REDESIGN
+================================= */
+
+:root {
+  --bg: #050510;
+  --panel: #100e25;
+  --purple: #b65cff;
+  --blue: #526dff;
+  --cyan: #43dcff;
+  --text: #ffffff;
+  --muted: #b0aecb;
+}
+
+/* Typography */
+body {
+  font-size: 17px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #28104a 0%, transparent 45%),
+    #050510;
+}
+
+.navbar {
+  min-height: 88px;
+  padding-inline: 8%;
+  background: #080716eF;
+  border-bottom: 1px solid #a855f733;
+}
+
+.brand {
+  font-size: 27px;
+  text-shadow: 0 0 20px #a855f7;
+}
+
+.navbar nav a {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.hero {
+  min-height: 780px;
+  padding: 100px 9%;
+  background:
+    radial-gradient(ellipse at 72% 48%, #7430d655, transparent 38%),
+    radial-gradient(ellipse at 20% 90%, #1645a544, transparent 40%),
+    linear-gradient(130deg, #080817, #110c2a 55%, #080817);
+}
+
+.hero h1 {
+  font-size: clamp(65px, 9vw, 112px);
+  letter-spacing: -3px;
+  line-height: 1.08;
+}
+
+.hero-content {
+  max-width: 750px;
+}
+
+.hero-content > p {
+  font-size: 20px;
+  max-width: 620px;
+  line-height: 2;
+  color: #c0bdd8;
+}
+
+.eyebrow {
+  font-size: 13px;
+  padding: 13px 22px;
+}
+
+.hero-art {
+  width: 440px;
+  height: 440px;
+  left: 5%;
+}
+
+.planet {
+  width: 230px;
+  height: 230px;
+  font-size: 110px;
+  background:
+    radial-gradient(circle at 30% 25%, #ffffff, #d5a2ff 12%, #9945ed 42%, #39217e 75%, #080817);
+  box-shadow:
+    0 0 50px #ad50ff,
+    0 0 100px #7b39ee88,
+    0 0 180px #5228c655;
+}
+
+.orbit {
+  width: 370px;
+  height: 145px;
+  border: 2px solid #c48bff99;
+  box-shadow: 0 0 18px #a855f744;
+}
+
+.orbit-two {
+  width: 390px;
+  height: 160px;
+  border-color: #43dcff66;
+}
+
+.floating-card {
+  padding: 20px 27px;
+  border: 1px solid #c78aff88;
+  box-shadow: 0 0 35px #8534d933;
+  font-size: 13px;
+}
+
+.floating-card b {
+  font-size: 18px;
+}
+
+.hero-stats {
+  gap: 65px;
+}
+
+.hero-stats strong {
+  font-size: 36px;
+  color: #d9b2ff;
+}
+
+.hero-stats small {
+  font-size: 14px;
+}
+
+.section {
+  padding: 115px 8%;
+}
+
+.section-heading h2,
+.facts-header h2 {
+  font-size: clamp(38px, 5vw, 55px);
+  font-weight: 900;
+}
+
+.section-heading > p,
+.facts-header > p {
+  font-size: 17px;
+}
+
+.section-tag {
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.game-grid {
+  gap: 28px;
+}
+
+.game-card {
+  border-radius: 23px;
+  background: linear-gradient(145deg, #1c1738, #0c0b1d);
+  border: 1px solid #a855f744;
+  box-shadow: 0 15px 45px #0005;
+}
+
+.game-card:hover {
+  border-color: #c77bff;
+  box-shadow: 0 0 40px #a855f733;
+  transform: translateY(-12px);
+}
+
+.game-art {
+  height: 235px;
+}
+
+.game-art > span {
+  font-size: 100px;
+  filter: drop-shadow(0 0 30px #b65cffaa);
+}
+
+.game-info {
+  padding: 28px;
+}
+
+.game-info h3 {
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.game-info p {
+  font-size: 16px;
+  line-height: 1.9;
+  min-height: 65px;
+  color: #b9b6d0;
+}
+
+.game-category {
+  font-size: 12px;
+}
+
+.primary-btn,
+.secondary-btn {
+  font-size: 16px;
+  padding: 16px 27px;
+  border-radius: 13px;
+}
+
+.primary-btn {
+  background: linear-gradient(110deg, #a43cff, #4c63ff);
+  box-shadow:
+    0 0 20px #a855f755,
+    0 8px 30px #5524bd44;
+}
+
+.primary-btn:hover {
+  box-shadow: 0 0 45px #a855f799;
+}
+
+.arcade-box,
+.world-box {
+  background:
+    radial-gradient(ellipse at 50% 0%, #54228a33, transparent 55%),
+    linear-gradient(145deg, #19142e, #09091a);
+  border: 1px solid #a855f755;
+  border-radius: 25px;
+  box-shadow: 0 20px 80px #0007;
+  padding: 30px;
+}
+
+.arcade-top strong,
+.world-stat strong {
+  font-size: 27px;
+}
+
+#gameCanvas,
+#worldCanvas {
+  border: 1px solid #a855f755;
+  box-shadow: 0 0 30px #7130bc22;
+}
+
+.profile-card {
+  padding: 40px;
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at 10% 50%, #762bc744, transparent 60%),
+    linear-gradient(110deg, #211641, #101024);
+}
+
+.profile-details h3 {
+  font-size: 30px;
+}
+
+.profile-details p {
+  font-size: 16px;
+}
+
+.achievement {
+  padding: 30px;
+  background: linear-gradient(145deg, #1c1735, #101020);
+  border: 1px solid #a855f733;
+  border-radius: 20px;
+}
+
+.achievement span {
+  font-size: 45px;
+}
+
+.achievement b {
+  font-size: 16px;
+}
+
+.achievement small {
+  font-size: 13px;
+}
+
+/* FACTS UNIVERSE */
+
+.facts-section {
+  padding: 120px 8%;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 45%, #52218b44, transparent 55%),
+    linear-gradient(180deg, #080817, #110c24, #080817);
+  border-top: 1px solid #a855f733;
+  border-bottom: 1px solid #a855f733;
+}
+
+.facts-header {
+  margin-bottom: 50px;
+}
+
+.facts-header h2 {
+  margin: 15px 0;
+}
+
+.facts-container {
+  max-width: 850px;
+  min-height: 400px;
+  margin: auto;
+  padding: 55px 35px;
+  border: 1px solid #b66aff77;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 0%, #7431b544, transparent 55%),
+    #100e24dd;
+  box-shadow:
+    0 0 35px #913bdb22,
+    0 25px 80px #0007;
+  backdrop-filter: blur(20px);
+}
+
+.fact-icon {
+  font-size: 75px;
+  margin-bottom: 22px;
+  filter: drop-shadow(0 0 20px #a855f7);
+  animation: factFloat 4s ease-in-out infinite;
+}
+
+@keyframes factFloat {
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+.fact-category {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #c58aff;
+}
+
+.facts-container h3 {
+  font-size: 38px;
+  margin: 15px 0;
+}
+
+.facts-container > p {
+  color: #d0cce5;
+  font-size: 21px;
+  line-height: 2;
+  max-width: 650px;
+  margin: 0 auto 25px;
+}
+
+.fact-counter {
+  color: #9184b7;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin: 25px 0;
+}
+
+.facts-container .primary-btn {
+  margin: 0 auto;
+}
+
+.final-cta {
+  padding: 140px 20px;
+  background:
+    radial-gradient(ellipse at center, #762db855, transparent 65%);
+}
+
+.final-cta h2 {
+  font-size: clamp(45px, 7vw, 75px);
+}
+
+footer {
+  padding: 40px 8%;
+}
+
+footer p {
+  font-size: 13px;
+}
+
+/* Responsive */
+@media(max-width:950px) {
+  .hero-art {
+    opacity: .18;
+    left: -80px;
+  }
+}
+
+@media(max-width:650px) {
+  body { font-size: 16px; }
+
+  .navbar {
+    min-height: 78px;
+    padding: 12px 5%;
+  }
+
+  .brand { font-size: 22px; }
+
+  .navbar nav a { font-size: 13px; }
+
+  .hero {
+    min-height: 700px;
+    padding: 75px 6%;
+  }
+
+  .hero h1 {
+    font-size: clamp(55px, 13vw, 75px);
+    letter-spacing: -2px;
+  }
+
+  .hero-content > p { font-size: 17px; }
+
+  .hero-art {
+    left: -170px;
+    transform: translateY(-50%) scale(.8);
+    opacity: .12;
+  }
+
+  .section { padding: 75px 5%; }
+
+  .section-heading h2,
+  .facts-header h2 { font-size: 38px; }
+
+  .game-art { height: 210px; }
+
+  .game-info h3 { font-size: 25px; }
+
+  .facts-section { padding: 85px 5%; }
+
+  .facts-container {
+    padding: 40px 20px;
+    min-height: 430px;
+  }
+
+  .fact-icon { font-size: 65px; }
+
+  .facts-container h3 { font-size: 32px; }
+
+  .facts-container > p { font-size: 18px; }
+
+  .profile-card { padding: 25px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .fact-icon { animation: none; }
+}
