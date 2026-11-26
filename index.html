@@ -316,5 +316,297 @@ game.addEventListener('touchstart',e=>{
 },{passive:true});
 drawGame();
 </script>
+
+<section class="content" id="block-world">
+  <h2 class="section-title">🌍 BLOCK WORLD</h2>
+  <p class="subtitle">בנה עולם משלך, חפור באדמה וחקור את עולם הקוביות!</p>
+
+  <div class="game-area">
+    <div style="display:flex;justify-content:space-around;margin-bottom:12px">
+      <span>🧱 בלוקים: <b id="blockCount">0</b></span>
+      <span>❤️ חיים: <b>100</b></span>
+    </div>
+
+    <canvas id="blockCanvas" width="800" height="480"
+      style="width:100%;display:block;border-radius:12px;touch-action:none;image-rendering:pixelated">
+    </canvas>
+
+    <div id="blockHotbar" style="display:flex;justify-content:center;gap:8px;margin:15px 0;flex-wrap:wrap">
+      <button class="btn blockChoice" data-type="grass">🌱</button>
+      <button class="btn blockChoice" data-type="dirt">🟫</button>
+      <button class="btn blockChoice" data-type="stone">🪨</button>
+      <button class="btn blockChoice" data-type="wood">🪵</button>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="btn" id="blockLeft">⬅️</button>
+      <button class="btn" id="blockJump">⬆️ קפיצה</button>
+      <button class="btn" id="blockRight">➡️</button>
+      <button class="btn" id="blockReset">🔄 עולם חדש</button>
+    </div>
+
+    <p style="color:#aaa;margin-top:15px">
+      מחשב: A/D או חצים לזוז, רווח לקפוץ, קליק שמאלי לחפור וקליק ימני לבנות.
+      בטלפון: השתמש בכפתורים ובמגע על הבלוקים.
+    </p>
+    <p id="blockMessage" style="color:#c4b5fd;margin-top:10px">ברוך הבא לעולם הקוביות!</p>
+  </div>
+</section>
+
+<script>
+(()=>{
+const canvas=document.getElementById('blockCanvas');
+const ctx=canvas.getContext('2d');
+const SIZE=40, W=50, H=12;
+let world=[],camera=0,selected='grass';
+let player={x:100,y:100,vx:0,vy:0,w:25,h:35,ground:false};
+let keys={},blocks=0,raf;
+const colors={
+ grass:'#55b84a',
+ dirt:'#986039',
+ stone:'#888b99',
+ wood:'#a66b36',
+ leaf:'#248a43',
+ air:null
+};
+const message=document.getElementById('blockMessage');
+
+function generate(){
+ world=Array.from({length:H},()=>Array(W).fill('air'));
+ for(let x=0;x<W;x++){
+  let ground=6+Math.floor(Math.sin(x*.4)*1.2+Math.random()*1.5);
+  for(let y=ground;y<H;y++){
+   world[y][x]=y===ground?'grass':y<ground+3?'dirt':'stone';
+  }
+  if(x%8===3 && Math.random()>.2){
+   world[ground-1][x]='wood';
+   world[ground-2][x]='wood';
+   for(let dx=-1;dx<=1;dx++){
+    for(let dy=-4;dy<=-2;dy++){
+     let tx=x+dx,ty=ground+dy;
+     if(tx>=0 && tx<W)world[ty][tx]='leaf';
+    }
+   }
+  }
+ }
+ player.x=100;player.y=100;player.vx=0;player.vy=0;
+ camera=0;blocks=0;
+ updateCount();
+}
+
+function updateCount(){
+ document.getElementById('blockCount').textContent=blocks;
+}
+
+function solid(x,y){
+ if(x<0||x>=W||y>=H)return true;
+ if(y<0)return false;
+ return world[y][x]!=='air';
+}
+
+function collides(x,y){
+ let l=Math.floor(x/SIZE),r=Math.floor((x+player.w-1)/SIZE);
+ let t=Math.floor(y/SIZE),b=Math.floor((y+player.h-1)/SIZE);
+ for(let ty=t;ty<=b;ty++)
+  for(let tx=l;tx<=r;tx++)
+   if(solid(tx,ty))return true;
+ return false;
+}
+
+function update(){
+ player.vx=0;
+ if(keys.left)player.vx=-3.5;
+ if(keys.right)player.vx=3.5;
+
+ player.x+=player.vx;
+ if(collides(player.x,player.y))player.x-=player.vx;
+
+ player.vy=Math.min(player.vy+.45,10);
+ player.y+=player.vy;
+ player.ground=false;
+
+ if(collides(player.x,player.y)){
+  if(player.vy>0)player.ground=true;
+  player.y-=player.vy;
+  player.vy=0;
+ }
+ if(player.y>600){player.y=100;player.x=100;player.vy=0;}
+
+ camera=Math.max(0,Math.min(W*SIZE-canvas.width,player.x-350));
+}
+
+function drawBlock(type,x,y){
+ let colors2=colors;
+ ctx.fillStyle=colors2[type]||'#000';
+ ctx.fillRect(x,y,SIZE,SIZE);
+ if(type==='grass'){
+  ctx.fillStyle='#7cdb55';ctx.fillRect(x,y,SIZE,9);
+ }
+ if(type==='wood'){
+  ctx.fillStyle='#704020';ctx.fillRect(x+12,y,5,SIZE);
+  ctx.fillRect(x+28,y,4,SIZE);
+ }
+ if(type==='stone'){
+  ctx.fillStyle='#aeb0b9';
+  ctx.fillRect(x+8,y+8,5,5);
+  ctx.fillRect(x+26,y+25,7,5);
+ }
+ if(type==='leaf'){
+  ctx.fillStyle='#48b95b';
+  ctx.fillRect(x+7,y+7,9,9);
+ }
+ ctx.strokeStyle='#00000022';
+ ctx.strokeRect(x,y,SIZE,SIZE);
+}
+
+function draw(){
+ ctx.fillStyle='#72b8e8';
+ ctx.fillRect(0,0,800,480);
+
+ // שמש
+ ctx.fillStyle='#ffe58a';
+ ctx.beginPath();ctx.arc(680,75,35,0,Math.PI*2);ctx.fill();
+
+ // עננים
+ ctx.fillStyle='#ffffffaa';
+ for(let i=0;i<4;i++){
+  let x=(i*240-camera*.25+800)%900;
+  ctx.fillRect(x,100,75,20);
+  ctx.fillRect(x+20,85,35,20);
+ }
+
+ // עולם
+ let start=Math.floor(camera/SIZE);
+ for(let y=0;y<H;y++){
+  for(let x=start;x<Math.min(W,start+22);x++){
+   let type=world[y][x];
+   if(type!=='air')
+    drawBlock(type,x*SIZE-camera,y*SIZE);
+  }
+ }
+
+ // שחקן
+ let px=player.x-camera;
+ ctx.fillStyle='#edbd8a';
+ ctx.fillRect(px+5,player.y,18,13);
+ ctx.fillStyle='#3067c7';
+ ctx.fillRect(px+3,player.y+13,22,14);
+ ctx.fillStyle='#333';
+ ctx.fillRect(px+4,player.y+27,8,9);
+ ctx.fillRect(px+17,player.y+27,8,9);
+ ctx.fillStyle='#222';
+ ctx.fillRect(px+17,player.y+5,3,3);
+
+ // הוראות
+ ctx.fillStyle='#111';
+ ctx.font='16px Arial';
+ ctx.fillText('BLOCK WORLD',15,25);
+}
+
+function loop(){
+ update();draw();
+ raf=requestAnimationFrame(loop);
+}
+
+function jump(){
+ if(player.ground){
+  player.vy=-10;
+  player.ground=false;
+ }
+}
+
+function action(e){
+ let rect=canvas.getBoundingClientRect();
+ let mx=(e.clientX-rect.left)*canvas.width/rect.width+camera;
+ let my=(e.clientY-rect.top)*canvas.height/rect.height;
+ let tx=Math.floor(mx/SIZE),ty=Math.floor(my/SIZE);
+
+ if(tx<0||tx>=W||ty<0||ty>=H)return;
+
+ if(e.button===2){
+  if(world[ty][tx]==='air'){
+   let overlaps=tx*SIZE<player.x+player.w &&
+    (tx+1)*SIZE>player.x &&
+    ty*SIZE<player.y+player.h &&
+    (ty+1)*SIZE>player.y;
+   if(!overlaps){
+    world[ty][tx]=selected;
+    blocks++;
+    updateCount();
+   }
+  }
+ }else{
+  if(world[ty][tx]!=='air'){
+   world[ty][tx]='air';
+   blocks=Math.max(0,blocks-1);
+   updateCount();
+  }
+ }
+}
+
+canvas.addEventListener('pointerdown',e=>{
+ e.preventDefault();
+ if(e.pointerType==='mouse')action(e);
+ else {
+  let rect=canvas.getBoundingClientRect();
+  let tx=Math.floor(((e.clientX-rect.left)*canvas.width/rect.width+camera)/SIZE);
+  let ty=Math.floor((e.clientY-rect.top)*canvas.height/rect.height/SIZE);
+  if(tx>=0&&tx<W&&ty>=0&&ty<H){
+   if(world[ty][tx]!=='air'){
+    world[ty][tx]='air';
+    blocks=Math.max(0,blocks-1);
+   }else if(ty>0 && world[ty+1]?.[tx]!=='air'){
+    world[ty][tx]=selected;
+    blocks++;
+   }
+   updateCount();
+  }
+ }
+});
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+
+document.querySelectorAll('.blockChoice').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  selected=btn.dataset.type;
+  message.textContent='נבחר בלוק: '+btn.textContent;
+  document.querySelectorAll('.blockChoice').forEach(b=>{
+   b.style.outline=b===btn?'3px solid white':'none';
+  });
+ });
+});
+document.getElementById('blockJump').onclick=jump;
+document.getElementById('blockReset').onclick=()=>{
+ generate();
+ message.textContent='🌍 יצרת עולם חדש!';
+};
+
+function hold(id,key){
+ let el=document.getElementById(id);
+ el.addEventListener('pointerdown',e=>{
+  e.preventDefault();keys[key]=true;
+ });
+ ['pointerup','pointerleave','pointercancel'].forEach(ev=>{
+  el.addEventListener(ev,()=>keys[key]=false);
+ });
+}
+hold('blockLeft','left');
+hold('blockRight','right');
+
+window.addEventListener('keydown',e=>{
+ if(['ArrowLeft','ArrowRight',' ','a','d','A','D'].includes(e.key))e.preventDefault();
+ if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=true;
+ if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=true;
+ if(e.key===' '||e.key==='ArrowUp')jump();
+});
+window.addEventListener('keyup',e=>{
+ if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')keys.left=false;
+ if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')keys.right=false;
+});
+
+generate();
+loop();
+})();
+</script>
+
 </body>
 </html>
