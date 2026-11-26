@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEONVERSE | העתיד מתחיל כאן</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Heebo,sans-serif;
+  background:#070711;
+  color:white;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+canvas{
+  position:fixed;inset:0;
+  z-index:-1;
+}
+nav{
+  display:flex;justify-content:space-between;
+  align-items:center;padding:25px 8%;
+  border-bottom:1px solid #ffffff12;
+  backdrop-filter:blur(15px);
+}
+.logo{
+  font-size:25px;font-weight:900;
+  color:#a78bfa;letter-spacing:2px;
+}
+nav a{
+  color:#aaa;text-decoration:none;
+  margin-right:25px;transition:.3s;
+}
+nav a:hover{color:#a78bfa}
+.hero{
+  min-height:75vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:40px 20px;
+}
+.tag{
+  border:1px solid #8b5cf6;
+  color:#c4b5fd;border-radius:50px;
+  padding:8px 20px;font-size:13px;
+  margin-bottom:30px;
+  box-shadow:0 0 20px #8b5cf633;
+}
+h1{
+  font-size:clamp(48px,9vw,100px);
+  font-weight:900;line-height:1.15;
+}
+.gradient{
+  background:linear-gradient(90deg,#818cf8,#d946ef,#38bdf8);
+  background-clip:text;color:transparent;
+}
+.subtitle{
+  color:#aaa;font-size:19px;
+  max-width:600px;margin:25px auto 35px;
+  line-height:1.8;
+}
+.btn{
+  padding:15px 35px;border-radius:12px;
+  background:linear-gradient(100deg,#7c3aed,#2563eb);
+  color:white;text-decoration:none;
+  font-weight:bold;border:0;cursor:pointer;
+  box-shadow:0 0 30px #7c3aed66;
+  transition:.3s;font-size:16px;
+}
+.btn:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 45px #7c3aedaa;
+}
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;max-width:1100px;
+  margin:0 auto;padding:30px 20px 100px;
+}
+.card{
+  background:#ffffff08;
+  border:1px solid #ffffff18;
+  border-radius:20px;padding:35px 25px;
+  backdrop-filter:blur(15px);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#a78bfa;
+  box-shadow:0 10px 40px #7c3aed22;
+}
+.icon{font-size:38px;margin-bottom:20px}
+.card h2{margin-bottom:12px}
+.card p{color:#999;line-height:1.7}
+footer{
+  text-align:center;padding:30px;
+  color:#666;border-top:1px solid #ffffff12;
+}
+#clock{color:#a78bfa;font-size:18px;margin-top:25px}
+@media(max-width:700px){
+  .cards{grid-template-columns:1fr}
+  nav{padding:20px}
+  nav a{margin-right:10px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <div class="logo">✦ NEONVERSE</div>
+  <div>
+    <a href="#home">בית</a>
+    <a href="#features">יכולות</a>
+    <a href="#about">אודות</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="tag">✧ WELCOME TO THE FUTURE ✧</div>
+  <h1>
+    העולם שלך.<br>
+    <span class="gradient">בלי גבולות.</span>
+  </h1>
+  <p class="subtitle">
+    ברוכים הבאים לעולם שבו דמיון וטכנולוגיה נפגשים.
+    העתיד לא מחכה לאף אחד. הגיע הזמן ליצור אותו.
+  </p>
+  <a href="#features" class="btn">גלה את העולם ✨</a>
+  <div id="clock"></div>
+</section>
+
+<section class="cards" id="features">
+  <div class="card">
+    <div class="icon">🚀</div>
+    <h2>מהירות העתיד</h2>
+    <p>טכנולוגיה מתקדמת, חוויית משתמש מהירה ועיצוב שלא רואים בכל יום.</p>
+  </div>
+  <div class="card">
+    <div class="icon">🌌</div>
+    <h2>עולם חדש</h2>
+    <p>היכנסו לעולם דיגיטלי עם אפקטים, צבעים ואווירה מהפנטת.</p>
+  </div>
+  <div class="card">
+    <div class="icon">⚡</div>
+    <h2>יצירתיות ללא גבולות</h2>
+    <p>כל רעיון יכול להפוך למשהו מדהים. רק צריך להתחיל ליצור.</p>
+  </div>
+</section>
+
+<section class="hero" id="about" style="min-height:40vh">
+  <h1 style="font-size:45px">READY FOR <span class="gradient">MORE?</span></h1>
+  <p class="subtitle">זה רק ההתחלה. העתיד נמצא בידיים שלך.</p>
+  <button class="btn" onclick="alert('🚀 ברוך הבא ל-NEONVERSE!')">
+    לחץ להפתעה ✨
+  </button>
+</section>
+
+<footer>
+  © 2026 NEONVERSE — נוצר עם ❤️ ודמיון
+</footer>
+
+<script>
+// שעון חי
+function updateClock(){
+  document.getElementById('clock').textContent =
+    'השעה עכשיו: '+new Date().toLocaleTimeString('he-IL');
+}
+updateClock();
+setInterval(updateClock,1000);
+
+// אנימציית כוכבים
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+let stars=[];
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  stars=Array.from({length:130},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*1.8,
+    speed:Math.random()*.5+.1
+  }));
+}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(180,160,255,.8)';
+    ctx.fill();
+    s.y-=s.speed;
+    if(s.y<0){
+      s.y=canvas.height;
+      s.x=Math.random()*canvas.width;
+    }
+  });
+  requestAnimationFrame(animate);
+}
+window.addEventListener('resize',resize);
+resize();
+animate();
+</script>
+</body>
+</html>
